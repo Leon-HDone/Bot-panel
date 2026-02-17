@@ -122,81 +122,20 @@ function initScrollReveal() {
   });
 }
 
-// ── Navbar Scroll (Auto-Hide) ──
+// ── Navbar Scroll ──
 function initNavbar() {
   const navbar = document.querySelector('.navbar');
   const toggle = document.querySelector('.nav-toggle');
   const links = document.querySelector('.nav-links');
-  const hoverZone = document.querySelector('.nav-hover-zone');
-
-  let lastScrollY = 0;
-  let ticking = false;
-  let isHovering = false;
-
-  function updateNavbar() {
-    const currentScrollY = window.scrollY;
-
-    // Always show at the very top of the page
-    if (currentScrollY < 80) {
-      navbar.classList.remove('nav-hidden');
-      navbar.classList.remove('scrolled');
-    } else {
-      navbar.classList.add('scrolled');
-
-      // Hide on scroll down, show on scroll up (unless mouse is hovering)
-      if (!isHovering) {
-        if (currentScrollY > lastScrollY && currentScrollY > 150) {
-          navbar.classList.add('nav-hidden');
-        } else {
-          navbar.classList.remove('nav-hidden');
-        }
-      }
-    }
-
-    lastScrollY = currentScrollY;
-    ticking = false;
-  }
 
   window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(updateNavbar);
-      ticking = true;
+    if (window.scrollY > 60) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
     }
   });
 
-  // Show navbar when mouse enters the hover zone at the top
-  if (hoverZone) {
-    hoverZone.addEventListener('mouseenter', () => {
-      isHovering = true;
-      navbar.classList.remove('nav-hidden');
-    });
-  }
-
-  // Also show when mouse is on the navbar itself
-  navbar.addEventListener('mouseenter', () => {
-    isHovering = true;
-    navbar.classList.remove('nav-hidden');
-  });
-
-  navbar.addEventListener('mouseleave', () => {
-    isHovering = false;
-    // Re-hide if scrolled down
-    if (window.scrollY > 150) {
-      setTimeout(() => {
-        if (!isHovering && window.scrollY > 150) {
-          navbar.classList.add('nav-hidden');
-        }
-      }, 1000); // Brief delay before hiding again
-    }
-  });
-
-  if (hoverZone) {
-    hoverZone.addEventListener('mouseleave', () => {
-      // Don't immediately set isHovering to false – let navbar mouseenter handle it
-    });
-  }
-
-  // Mobile toggle
   if (toggle) {
     toggle.addEventListener('click', () => {
       links.classList.toggle('open');
@@ -208,7 +147,7 @@ function initNavbar() {
   document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
       links.classList.remove('open');
-      if (toggle) toggle.classList.remove('active');
+      toggle.classList.remove('active');
     });
   });
 }
