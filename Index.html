@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Custom Discord Bots nach deinen Wünschen – Node.js & Python. Professionelle Bot-Entwicklung mit günstigen Hosting-Tarifen.">
+    <title>Leon's Bot Studio – Custom Discord Bots</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+</head>
+
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader"
+        style="position:fixed;inset:0;background:#09090f;z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity 0.6s">
+        <div
+            style="width:40px;height:40px;border:3px solid rgba(168,85,247,0.2);border-top-color:#a855f7;border-radius:50%;animation:spin 0.8s linear infinite">
+        </div>
+    </div>
+
+    <!-- Background Effects -->
+    <div class="bg-effects">
+        <div class="bg-orb bg-orb--1"></div>
+        <div class="bg-orb bg-orb--2"></div>
+        <div class="bg-orb bg-orb--3"></div>
+    </div>
+    <div class="grid-overlay"></div>
+
+    <!-- Hover zone to reveal navbar when mouse reaches top -->
+    <div class="nav-hover-zone"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="#home" class="nav-logo">
+                <div class="logo-icon">🤖</div>
+                Leon's Bots
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#bots">Bots</a></li>
+                <li><a href="#pricing">Tarife</a></li>
+                <li><a href="#about">Über Mich</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+
+            <div class="nav-cta">
+                <a href="#pricing" class="btn btn--glass">Tarife ansehen</a>
+                <a href="#contact" class="btn btn--primary">Bot anfragen</a>
+            </div>
+
+            <button class="nav-toggle" id="navToggle" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ════════════════════════════════════════════
+       HERO SECTION
+       ════════════════════════════════════════════ -->
+    <section class="hero" id="home">
+        <canvas id="particle-canvas"></canvas>
+
+        <!-- Floating Badges -->
+        <div class="float-badge float-badge--1">
+            <div class="badge-icon purple">🟣</div>
+            <div><strong>Node.js</strong><br><small style="color:var(--text-muted)">Backend Power</small></div>
+        </div>
+        <div class="float-badge float-badge--2">
+            <div class="badge-icon pink">🐍</div>
+            <div><strong>Python</strong><br><small style="color:var(--text-muted)">Flexible Logik</small></div>
+        </div>
+        <div class="float-badge float-badge--3">
+            <div class="badge-icon cyan">⚡</div>
+            <div><strong>24/7 Online</strong><br><small style="color:var(--text-muted)">Immer erreichbar</small></div>
+        </div>
+
+        <div class="hero-content">
+            <div class="section-badge">⚡ Custom Discord Bot Service</div>
+
+            <h1 class="hero-title">
+                Dein Traum-Bot,<br>
+                <span class="gradient-text typing-text">Custom Discord Bots</span><span class="typing-cursor"></span>
+            </h1>
+
+            <p class="hero-subtitle">
+                Individuelle Discord Bots nach deinen Wünschen – entwickelt in Node.js & Python.
+                Von der Idee bis zum fertigen Bot, alles aus einer Hand.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="#pricing" class="btn btn--primary btn--large">
+                    Tarife entdecken →
+                </a>
+                <a href="#bots" class="btn btn--glass btn--large">
+                    Mehr erfahren
+                </a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="value"><span class="counter" data-target="50" data-suffix="+">0</span></div>
+                    <div class="label">Bots erstellt</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="value"><span class="counter" data-target="99" data-suffix="%">0</span></div>
+                    <div class="label">Uptime</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="value"><span class="counter" data-target="24" data-suffix="/7">0</span></div>
+                    <div class="label">Support</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ════════════════════════════════════════════
+       BOTS / FEATURES SECTION
+       ════════════════════════════════════════════ -->
+    <section id="bots">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge reveal">🤖 Was wir bieten</div>
+                <h2 class="section-title reveal stagger-1">Dein Bot, <span>dein Design</span></h2>
+                <p class="section-subtitle reveal stagger-2">
+                    Wir entwickeln deinen Discord Bot genau nach deinen Vorstellungen.
+                    Egal ob Moderation, Musik, Games oder Custom Commands.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="glass-card feature-card liquid-shine reveal stagger-1">
+                    <div class="feature-icon purple">⚙️</div>
+                    <h3>Custom Commands</h3>
+                    <p>Erstelle einzigartige Befehle, die perfekt zu deinem Server passen. Slash Commands, Prefix
+                        Commands – alles möglich.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Slash Commands</span>
+                        <span class="tag">Prefix</span>
+                        <span class="tag">Buttons</span>
+                    </div>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-card feature-card liquid-shine reveal stagger-2">
+                    <div class="feature-icon pink">🛡️</div>
+                    <h3>Moderation & Security</h3>
+                    <p>Auto-Moderation, Anti-Spam, Warn-System, Mute/Ban und mehr. Halte deinen Server sicher und
+                        sauber.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Auto-Mod</span>
+                        <span class="tag">Anti-Spam</span>
+                        <span class="tag">Logs</span>
+                    </div>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-card feature-card liquid-shine reveal stagger-3">
+                    <div class="feature-icon cyan">🎵</div>
+                    <h3>Entertainment & Musik</h3>
+                    <p>Musik-Player, Mini-Games, Leveling-System, Giveaways und interaktive Features für deine
+                        Community.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Musik</span>
+                        <span class="tag">Games</span>
+                        <span class="tag">Level</span>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="glass-card feature-card liquid-shine reveal stagger-4">
+                    <div class="feature-icon gold">🔧</div>
+                    <h3>Node.js & Python</h3>
+                    <p>Dein Bot wird in der Sprache deiner Wahl entwickelt. Ob discord.js oder discord.py – wir
+                        beherrschen beides.</p>
+                    <div class="feature-tags">
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">API</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ════════════════════════════════════════════
+       PRICING SECTION
+       ════════════════════════════════════════════ -->
+    <section id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge reveal">💎 Hosting Tarife</div>
+                <h2 class="section-title reveal stagger-1">Faire Preise, <span>maximale Leistung</span></h2>
+                <p class="section-subtitle reveal stagger-2">
+                    Wähle den passenden Tarif für deinen Bot. Alle Tarife beinhalten professionelles Bot-Hosting.
+                </p>
+            </div>
+
+            <div class="pricing-grid">
+
+                <!-- ── STARTER ── -->
+                <div class="glass-card pricing-card liquid-shine reveal-scale stagger-1">
+                    <div class="pricing-header">
+                        <h3>🚀 Starter</h3>
+                        <p class="pricing-desc">Perfekt zum Ausprobieren</p>
+                    </div>
+                    <div class="pricing-specs">
+                        <div class="spec">
+                            <div class="spec-icon">💾</div>
+                            <div><span class="spec-value">100 MB</span> Speicher</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">🧠</div>
+                            <div><span class="spec-value">200 MB</span> RAM</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">🌐</div>
+                            <div><span class="spec-value">Unlimited</span> Traffic</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">⚡</div>
+                            <div><span class="spec-value">8 Cores</span> CPU</div>
+                        </div>
+                    </div>
+                    <div class="pricing-tiers">
+                        <h4>Laufzeiten</h4>
+                        <div class="tier-row">
+                            <span class="duration">1 Monat</span>
+                            <span class="price free">GRATIS</span>
+                        </div>
+                        <div class="tier-row">
+                            <span class="duration">2 Monate</span>
+                            <span class="price">€0,50</span>
+                        </div>
+                        <div class="tier-row">
+                            <span class="duration">3 Monate</span>
+                            <span class="price">€1,00</span>
+                        </div>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#contact" class="btn btn--glass">Gratis starten</a>
+                    </div>
+                </div>
+
+                <!-- ── STANDARD ── -->
+                <div class="glass-card pricing-card liquid-shine reveal-scale stagger-2">
+                    <div class="pricing-header">
+                        <h3>⭐ Standard</h3>
+                        <p class="pricing-desc">Für wachsende Server</p>
+                    </div>
+                    <div class="pricing-specs">
+                        <div class="spec">
+                            <div class="spec-icon">💾</div>
+                            <div><span class="spec-value">1 GB</span> Speicher</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">🧠</div>
+                            <div><span class="spec-value">1 GB</span> RAM</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">🌐</div>
+                            <div><span class="spec-value">Unlimited</span> Traffic</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">⚡</div>
+                            <div><span class="spec-value">8 Cores</span> CPU</div>
+                        </div>
+                    </div>
+                    <div class="pricing-tiers">
+                        <h4>Laufzeiten</h4>
+                        <div class="tier-row">
+                            <span class="duration">1 Monat</span>
+                            <span class="price">€2,50</span>
+                        </div>
+                        <div class="tier-row">
+                            <span class="duration">2 Monate</span>
+                            <span class="price">€3,20</span>
+                        </div>
+                        <div class="tier-row">
+                            <span class="duration">3 Monate</span>
+                            <span class="price">€4,50</span>
+                        </div>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#contact" class="btn btn--glass">Auswählen</a>
+                    </div>
+                </div>
+
+                <!-- ── PRO ── -->
+                <div class="glass-card pricing-card featured liquid-shine reveal-scale stagger-3">
+                    <div class="pricing-badge">🔥 Beliebt</div>
+                    <div class="pricing-header">
+                        <h3>💜 Pro</h3>
+                        <p class="pricing-desc">Für professionelle Bots</p>
+                    </div>
+                    <div class="pricing-specs">
+                        <div class="spec">
+                            <div class="spec-icon">💾</div>
+                            <div><span class="spec-value">10 GB</span> Speicher</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">🧠</div>
+                            <div><span class="spec-value">2 GB</span> RAM</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">🌐</div>
+                            <div><span class="spec-value">10 TB</span> Traffic/mtl.</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">⚡</div>
+                            <div><span class="spec-value">8 Cores</span> CPU</div>
+                        </div>
+                    </div>
+                    <div class="pricing-tiers">
+                        <h4>Laufzeiten</h4>
+                        <div class="tier-row">
+                            <span class="duration">1 Monat</span>
+                            <span class="price">€7,50</span>
+                        </div>
+                        <div class="tier-row">
+                            <span class="duration">2 Monate</span>
+                            <span class="price">€9,00</span>
+                        </div>
+                        <div class="tier-row">
+                            <span class="duration">3 Monate</span>
+                            <span class="price">€12,00</span>
+                        </div>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#contact" class="btn btn--primary">Jetzt starten</a>
+                    </div>
+                </div>
+
+                <!-- ── MAX ── -->
+                <div class="glass-card pricing-card liquid-shine reveal-scale stagger-4">
+                    <div class="pricing-header">
+                        <h3>👑 MAX</h3>
+                        <p class="pricing-desc">Maximale Power</p>
+                    </div>
+                    <div class="pricing-specs">
+                        <div class="spec">
+                            <div class="spec-icon">💾</div>
+                            <div><span class="spec-value">220 GB</span> Speicher</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">🧠</div>
+                            <div><span class="spec-value">6 GB</span> RAM</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">🌐</div>
+                            <div><span class="spec-value">30 TB</span> Traffic/mtl.</div>
+                        </div>
+                        <div class="spec">
+                            <div class="spec-icon">⚡</div>
+                            <div><span class="spec-value">8 Cores</span> CPU</div>
+                        </div>
+                    </div>
+                    <div class="pricing-tiers">
+                        <h4>Laufzeiten</h4>
+                        <div class="tier-row">
+                            <span class="duration">1 Monat</span>
+                            <span class="price">Auf Anfrage</span>
+                        </div>
+                        <div class="tier-row">
+                            <span class="duration">2 Monate</span>
+                            <span class="price">Auf Anfrage</span>
+                        </div>
+                        <div class="tier-row">
+                            <span class="duration">3 Monate</span>
+                            <span class="price">Auf Anfrage</span>
+                        </div>
+                    </div>
+                    <div class="pricing-footer">
+                        <a href="#contact" class="btn btn--glass">Anfragen</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ════════════════════════════════════════════
+       ABOUT SECTION
+       ════════════════════════════════════════════ -->
+    <section id="about">
+        <div class="container">
+            <div class="about-layout">
+                <div class="about-avatar reveal-left">
+                    <div class="avatar-frame">
+                        <div class="avatar-inner">
+                            👨‍💻
+                        </div>
+                        <div class="avatar-orbits"></div>
+                    </div>
+                </div>
+
+                <div class="about-info reveal-right">
+                    <div class="section-badge">👋 Über Mich</div>
+                    <h2>Hey, ich bin <span
+                            style="background:var(--gradient-primary);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Leon</span>
+                    </h2>
+                    <p class="about-role">Developer & Bot Creator</p>
+                    <p class="about-text">
+                        Ich bin leidenschaftlicher Entwickler und spezialisiere mich auf Custom Discord Bots.
+                        Mit Erfahrung in Node.js und Python entwickle ich Bots, die genau zu deinem Server passen.
+                        Von einfachen Utility-Bots bis hin zu komplexen Systemen mit Datenbanken und APIs –
+                        ich setze deine Ideen in die Realität um.
+                    </p>
+                    <p class="about-text">
+                        Mein Ziel ist es, jedem Server das perfekte Bot-Erlebnis zu bieten.
+                        Ich arbeite eng mit dir zusammen, um sicherzustellen, dass dein Bot
+                        genau das macht, was du brauchst.
+                    </p>
+
+                    <div class="skills-grid">
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">discord.js</span>
+                        <span class="skill-tag">discord.py</span>
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Bot Hosting</span>
+                    </div>
+
+                    <a href="#contact" class="btn btn--primary btn--large">Kontaktiere mich →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ════════════════════════════════════════════
+       CONTACT SECTION
+       ════════════════════════════════════════════ -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge reveal">💬 Kontakt</div>
+                <h2 class="section-title reveal stagger-1">Lass uns <span>reden</span></h2>
+                <p class="section-subtitle reveal stagger-2">
+                    Hast du eine Idee für einen Bot? Schreib mir und wir besprechen alles Weitere!
+                </p>
+            </div>
+
+            <div class="contact-grid">
+                <div class="glass-card contact-card liquid-shine reveal stagger-1">
+                    <div class="contact-icon">💬</div>
+                    <h3>Discord</h3>
+                    <p>Der schnellste Weg, mich zu erreichen. Schreib mir direkt auf Discord!</p>
+                    <a href="#">Leon#0001</a>
+                </div>
+
+                <div class="glass-card contact-card liquid-shine reveal stagger-2">
+                    <div class="contact-icon">📧</div>
+                    <h3>E-Mail</h3>
+                    <p>Für ausführliche Anfragen und Projektbesprechungen.</p>
+                    <a href="mailto:leon@example.com">leon@example.com</a>
+                </div>
+
+                <div class="glass-card contact-card liquid-shine reveal stagger-3">
+                    <div class="contact-icon">🌐</div>
+                    <h3>Discord Server</h3>
+                    <p>Tritt meinem Server bei für Support, Updates und Community!</p>
+                    <a href="#">Server beitreten →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-copy">© 2026 Leon's Bot Studio – Alle Rechte vorbehalten.</div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#bots">Bots</a>
+                    <a href="#pricing">Tarife</a>
+                    <a href="#about">Über Mich</a>
+                    <a href="#contact">Kontakt</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
