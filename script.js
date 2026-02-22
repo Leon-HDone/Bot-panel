@@ -13,7 +13,12 @@ class ParticleSystem {
     this.resize();
     this.init();
     this.bindEvents();
+    this.repulseEvents = []; // Array of active repulsion forces
     this.animate();
+  }
+
+  repulse(x, y) {
+    this.repulseEvents.push({ x, y, radius: 0, maxRadius: 100, strength: 1.0 });
   }
 
   resize() {
@@ -102,6 +107,31 @@ class ParticleSystem {
         }
       }
     });
+
+    // Handle typing repulsion pulses
+    for (let k = this.repulseEvents.length - 1; k >= 0; k--) {
+      const rep = this.repulseEvents[k];
+      rep.radius += 5; // Expansion speed
+      rep.strength -= 0.05; // Fade out
+
+      if (rep.strength <= 0) {
+        this.repulseEvents.splice(k, 1);
+        continue;
+      }
+
+      this.particles.forEach((p) => {
+        const dx = p.x - rep.x;
+        const dy = p.y - rep.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        // Push particles outwards if they are near the expanding ring
+        if (dist > rep.radius - 20 && dist < rep.radius + 20) {
+          const force = (1 - Math.abs(dist - rep.radius) / 20) * rep.strength;
+          p.x += (dx / dist) * force * 15;
+          p.y += (dy / dist) * force * 15;
+        }
+      });
+    }
 
     requestAnimationFrame(() => this.animate());
   }
@@ -214,6 +244,15 @@ function initTyping() {
       typingSpeed = 80;
     }
 
+    // Create a particle explosion effect where the typing happens
+    if (window.particleSystem) {
+      const rect = el.getBoundingClientRect();
+      // Approximate the x position of the new character
+      const charX = rect.left + (rect.width * (charIndex / currentWord.length));
+      const charY = rect.top + (rect.height / 2);
+      window.particleSystem.repulse(charX, charY);
+    }
+
     if (!isDeleting && charIndex === currentWord.length) {
       typingSpeed = 2000;
       isDeleting = true;
@@ -310,11 +349,89 @@ function initActiveNav() {
   });
 }
 
+// ── Terminal / Live Demo ──
+function initTerminal() {
+  const input = document.getElementById('terminal-input');
+  const btn = document.getElementById('terminal-submit');
+  const chat = document.getElementById('terminal-chat');
+
+  if (!input || !btn || !chat) return;
+
+  function addMessage(text, isBot = false) {
+    const time = new Date().toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' });
+    const avatar = isBot ? '🤖' : '👤';
+    const avatarClass = isBot ? 'purple' : 'user';
+    const author = isBot ? 'DevDesert Bot' : 'Du';
+    const badge = isBot ? '<span class="msg-badge">BOT</span>' : '';
+
+    const html = `
+      <div class="discord-msg">
+        <div class="msg-avatar ${avatarClass}">${avatar}</div>
+        <div class="msg-wrapper">
+          <div class="msg-header">
+            <span class="msg-author">${author}</span>
+            ${badge}
+            <span class="msg-time">Heute um ${time}</span>
+          </div>
+          <div class="msg-text">${text}</div>
+        </div>
+      </div>
+    `;
+
+    chat.insertAdjacentHTML('beforeend', html);
+    chat.scrollTop = chat.scrollHeight;
+  }
+
+  function handleCommand(cmd) {
+    const val = cmd.trim().toLowerCase();
+
+    setTimeout(() => {
+      if (val === '/help') {
+        addMessage(`Hier sind ein paar Befehle, die ich verstehe:<br>
+          <code>/ping</code> - Zeigt die Latenz an<br>
+          <code>/stats</code> - Serverstatistiken<br>
+          <code>/quote</code> - Ein zufälliges Zitat
+        `, true);
+      } else if (val === '/ping') {
+        addMessage(`🏓 Pong! Latenz: <b>${Math.floor(Math.random() * 50) + 10}ms</b>`, true);
+      } else if (val === '/stats') {
+        addMessage(`📊 <b>Server Stats:</b><br>Mitglieder: 1,337<br>Online: 420<br>Uptime: 99.9%`, true);
+      } else if (val === '/quote') {
+        const quotes = [
+          "Code is poetry.",
+          "It's not a bug, it's an undocumented feature.",
+          "Hello, World!",
+          "Der frühe Vogel fängt den Bug."
+        ];
+        addMessage(`💬 "${quotes[Math.floor(Math.random() * quotes.length)]}"`, true);
+      } else {
+        addMessage(`Befehl <code>${val}</code> nicht gefunden. Probier <code>/help</code>!`, true);
+      }
+    }, 600);
+  }
+
+  function submitCommand() {
+    const val = input.value.trim();
+    if (!val) return;
+
+    addMessage(val, false);
+    input.value = '';
+    handleCommand(val);
+  }
+
+  btn.addEventListener('click', submitCommand);
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') submitCommand();
+  });
+}
+
 // ── Initialize Everything ──
 document.addEventListener('DOMContentLoaded', () => {
   // Particles
   const canvas = document.getElementById('particle-canvas');
-  if (canvas) new ParticleSystem(canvas);
+  if (canvas) {
+    window.particleSystem = new ParticleSystem(canvas);
+  }
 
   // All modules
   initScrollReveal();
@@ -326,6 +443,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initParallax();
   initMagneticButtons();
   initActiveNav();
+  initTerminal();
 
   // Preloader fade out
   const preloader = document.getElementById('preloader');
