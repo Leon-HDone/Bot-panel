@@ -35,12 +35,13 @@
         <div class="container">
             <a href="#home" class="nav-logo">
                 <div class="logo-icon">🪨</div>
-                DevDesert Bots
+                <span class="logo-text">DevDesert Bots</span>
             </a>
 
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home" class="active">Home</a></li>
                 <li><a href="#bots">Bots</a></li>
+                <li><a href="#terminal">Live Demo</a></li>
                 <li><a href="#pricing">Tarife</a></li>
                 <li><a href="#about">Über Mich</a></li>
                 <li><a href="#contact">Kontakt</a></li>
@@ -182,6 +183,67 @@
                         <span class="tag">Node.js</span>
                         <span class="tag">Python</span>
                         <span class="tag">API</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ════════════════════════════════════════════
+       TERMINAL / LIVE DEMO SECTION
+       ════════════════════════════════════════════ -->
+    <section id="terminal">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge reveal">Live Demo</div>
+                <h2 class="section-title reveal stagger-1">Test den <span>Bot</span></h2>
+                <p class="section-subtitle reveal stagger-2">
+                    Probier's aus! Tippe einen Befehl oder drücke den Button, um zu sehen, wie dein zukünftiger Bot
+                    antworte.
+                </p>
+            </div>
+
+            <div class="terminal-wrapper reveal-scale stagger-3 glass-card liquid-shine">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+                    <div class="terminal-title"># devdesert-demo</div>
+                </div>
+
+                <div class="terminal-body" id="terminal-chat">
+                    <div class="discord-msg">
+                        <div class="msg-avatar purple">🤖</div>
+                        <div class="msg-wrapper">
+                            <div class="msg-header">
+                                <span class="msg-author">DevDesert Bot</span>
+                                <span class="msg-badge">BOT</span>
+                                <span class="msg-time">Gerade eben</span>
+                            </div>
+                            <div class="msg-text">
+                                Hey! 👋 Ich bin dein zukünftiger Custom Bot. Versuch doch mal, <code>/help</code> oder
+                                <code>/ping</code> unten einzugeben!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal-input-area">
+                    <div class="terminal-input-mock">
+                        <div class="plus-circle">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 5V19M5 12H19" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </div>
+                        <input type="text" id="terminal-input" placeholder="Nachricht an #devdesert-demo"
+                            autocomplete="off" spellcheck="false">
+                        <button id="terminal-submit" class="terminal-send">
+                            Befehl senden
+                        </button>
                     </div>
                 </div>
             </div>
